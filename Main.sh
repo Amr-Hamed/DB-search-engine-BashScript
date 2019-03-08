@@ -60,7 +60,6 @@ do
 
     else
         echo "Error: Not a valid AGO sql syntax"
-        echo "here"
     
     fi
     
