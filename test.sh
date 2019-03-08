@@ -1,11 +1,8 @@
 #!/bin/bash
 clear
-
-read line
-while [[ -n "$line" ]]
-do
-    my_array=("${my_array[@]}" $line)
-    read line
-done
-
-echo ${my_array[@]}
+function x(){
+index=1
+index=$(($index+1))
+echo $index
+}
+x $1 $2
