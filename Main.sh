@@ -20,29 +20,38 @@ read input
 while [[ $input != "e" ]]
 do
     commands=("${my_array[@]}" $input)
-    if [[ ${commands[2]} =~ $validate &&  ${#commands[@]} -le 3 ]] 
+    
+    if [[ ${commands[2]} =~ $validate &&  ${#commands[@]} -eq 3 ]] 
     then 
     
-        if [ ${commands[0]} == 'create' ] && [ ${commands[1]} == 'db' ] && [ ${#commands[@]} -eq 3 ]
+        if [ ${commands[0]} == 'create' ] && [ ${commands[1]} == 'db' ]
         then
             . ./createDB.sh ${commands[2]}
                 
-        elif [ ${commands[0]} == 'delete' ] && [ ${commands[1]} == 'db' ] && [ ${#commands[@]} -eq 3 ]
+        elif [ ${commands[0]} == 'delete' ] && [ ${commands[1]} == 'db' ]
         then
             . ./deleteDB.sh ${commands[2]}
-
-        elif [ ${commands[0]} == 'show' ] && [ ${commands[1]} == 'dbs' ] && [ ${#commands[@]} -eq 2 ]
-        then
-            . ./showDBs.sh
-
-        elif [ ${commands[0]} == 'use' ] && [ ${#commands[@]} -eq 2 ] && [ ${commands[1]} =~ $validate ]
-        then
-            . ./useDB.sh ${commands[1]}
 
         else
             echo "Error: Not a valid sql syntax"
 
         fi
+
+    elif [[ ${commands[1]} =~ $validate &&  ${#commands[@]} -eq 2 ]]
+    then
+        
+        if [ ${commands[0]} == 'show' ] && [ ${commands[1]} == 'dbs' ]
+        then
+            . ./showDBs.sh
+
+        elif [ ${commands[0]} == 'use' ]
+        then
+            . ./useDB.sh ${commands[1]}
+        
+        else
+            echo "Error: Not a valid sql syntax"
+
+    fi
 
     else
         echo "Error: Not a valid sql syntax"
