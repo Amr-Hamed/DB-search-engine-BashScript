@@ -8,7 +8,7 @@ mkdir "./DBs"
 fi
 
 echo "                      |--------------------|"
-echo "               -------| Welcom To AGO DBMS |-------"
+echo "               -------| Welcome To AGO DBMS |-------"
 echo "                      |--------------------|"
 echo "" 
 echo "" 
@@ -17,7 +17,7 @@ printf "AGO SQL > "
 
 read input
 
-while [[ $input != "e" ]]
+while [[ $input != "exit" ]]
 do
     commands=("${my_array[@]}" $input)
     
@@ -33,7 +33,7 @@ do
             . ./deleteDB.sh ${commands[2]}
 
         else
-            echo "Error: Not a valid sql syntax"
+            echo "Error: Not a valid AGO sql syntax"
 
         fi
 
@@ -47,14 +47,19 @@ do
         elif [ ${commands[0]} == 'use' ]
         then
             . ./useDB.sh ${commands[1]}
-        
+            if [ ${success} -eq 1 ]
+            then 
+                . ./dbOperations.sh ${commands[1]}
+            
+            fi
+
         else
-            echo "Error: Not a valid sql syntax"
+            echo "Error: Not a valid AGO sql syntax"
 
     fi
 
     else
-        echo "Error: Not a valid sql syntax"
+        echo "Error: Not a valid AGO sql syntax"
         echo "here"
     
     fi
