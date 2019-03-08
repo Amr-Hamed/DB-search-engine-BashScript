@@ -7,21 +7,49 @@ then
 mkdir "./DBs"
 fi
 
+echo "                      |--------------------|"
+echo "               -------| Welcom To AGO DBMS |-------"
+echo "                      |--------------------|"
+echo "" 
+echo "" 
+echo ""
+printf "AGO SQL > "
+
 read input
+
 while [[ $input != "e" ]]
 do
     commands=("${my_array[@]}" $input)
-    if [ ${commands[0]} == 'create' ] && [ ${commands[1]} == 'db' ] && [ ${#commands[@]} -eq 3 ]
+    if [[ ${commands[2]} =~ $validate &&  ${#commands[@]} -le 3 ]] 
+    then 
+    
+        if [ ${commands[0]} == 'create' ] && [ ${commands[1]} == 'db' ] && [ ${#commands[@]} -eq 3 ]
         then
-            if [[ ${commands[2]} =~ $validate ]]
-                then
-                echo "Valid sql syntax"
-            else
-                echo "Not valid sql syntax"
-            fi
-            
+            . ./createDB.sh ${commands[2]}
+                
+        elif [ ${commands[0]} == 'delete' ] && [ ${commands[1]} == 'db' ] && [ ${#commands[@]} -eq 3 ]
+        then
+            . ./deleteDB.sh ${commands[2]}
+
+        elif [ ${commands[0]} == 'show' ] && [ ${commands[1]} == 'dbs' ] && [ ${#commands[@]} -eq 2 ]
+        then
+            . ./showDBs.sh
+
+        elif [ ${commands[0]} == 'use' ] && [ ${#commands[@]} -eq 2 ] && [ ${commands[1]} =~ $validate ]
+        then
+            . ./useDB.sh ${commands[1]}
+
+        else
+            echo "Error: Not a valid sql syntax"
+
+        fi
+
+    else
+        echo "Error: Not a valid sql syntax"
+    
     fi
     
+    printf "AGO SQL > "
     read input
 
 done
