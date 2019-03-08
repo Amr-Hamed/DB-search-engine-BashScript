@@ -6,11 +6,14 @@ function useDB(){
     
     DBName=$1
 
-    if [ -e ./DBs/$DBName]
+    if [ -e ./DBs/$DBName ]
     then
-        echo "DB changed to $DBName"
+        echo "DB changed to $DBName!"
+        return 1;
     else
-        echo "Sorry, there's no DB under $DBName name"
+        echo "Sorry, there's no DB under $DBName name!"
+        return 0;
     fi
 }
-useDB $1
+success=useDB $1
+export $success

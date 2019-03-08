@@ -55,7 +55,6 @@ do
 
     else
         echo "Error: Not a valid sql syntax"
-        echo "here"
     
     fi
     
