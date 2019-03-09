@@ -1,4 +1,4 @@
-#!user/bin/bash
+#!/bin/bash
 
 function useDB(){
     echo "Wlecome to useDB menu"

@@ -1,12 +1,13 @@
-#!user/bin/bash
-clear
+#!/bin/bash
 
-# function x(){
-# x=''
-# $$1=$x
-# echo $1
-# echo $@
-# }
-# x $@
+function createTable(){
+    i=3
+while [ $i -le $# ]
+do
+    echo ${!i}
+    let i=$i+1
+done
 
-cut -d' ' -f2- "string goes here" >> ./test
+}
+
+createTable $@

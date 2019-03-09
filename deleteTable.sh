@@ -1,4 +1,4 @@
-#user/bin/bash
+#!/bin/bash
 
 function deleteTable(){
     echo "Welcome to the delete table menu"
@@ -14,7 +14,6 @@ function deleteTable(){
             read ans
                 case $ans in 
                 [Yy])   rm ./DBs/$DBName/$tableName
-                        sed -i "/$tableName/d" ./DBs/$DBName/.DBMetaData
                         echo "Table $tableName deleted successfully!"
                         break
                 ;;

@@ -1,4 +1,4 @@
-#!user/bin/bash
+#!/bin/bash
 
 function createTable(){
     clear
@@ -11,10 +11,14 @@ function createTable(){
     if [ ! -e ./DBs/$DBName/$tableName ]
     then 
         touch ./DBs/$DBName/$tableName
-        echo $@ >> ./DBs/$DBName/.DBMetaData
-        echo
-        echo $@ >> ./DBs/$DBName/$tableName
-        echo 
+        i=3
+        
+        while [ $i -le $# ]
+        do
+        printf "%s:" ${!i} >> ./DBs/$DBName/$tableName
+        let i=$i+1
+        done
+        echo >> ./DBs/$DBName/$tableName
     else
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi

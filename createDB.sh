@@ -1,4 +1,4 @@
-#!/user/bin/bash
+#!/bin/bash
 
 function createDB(){
 echo "Wlecome to Create DB menu"
