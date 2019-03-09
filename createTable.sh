@@ -8,11 +8,6 @@ function createTable(){
     DBName=$1
     tableName=$2
 
-    if [ ! -e ./DBs/$DBName/.DBMetaData ]
-    then 
-        touch ./DBs/$DBName/.DBMetaData
-    fi
-
     if [ ! -e ./DBs/$DBName/$tableName ]
     then 
         touch ./DBs/$DBName/$tableName
@@ -24,4 +19,4 @@ function createTable(){
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi
 }
-createTable $1 $2 $3 $4 
+createTable $@

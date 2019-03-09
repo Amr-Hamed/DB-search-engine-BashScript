@@ -1,8 +1,12 @@
-#!/bin/bash
+#!user/bin/bash
 clear
-function x(){
-index=1
-index=$(($index+1))
-echo $index
-}
-x $1 $2
+
+# function x(){
+# x=''
+# $$1=$x
+# echo $1
+# echo $@
+# }
+# x $@
+
+cut -d' ' -f2- "string goes here" >> ./test
