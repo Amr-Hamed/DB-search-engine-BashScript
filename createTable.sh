@@ -8,11 +8,6 @@ function createTable(){
     DBName=$1
     tableName=$2
 
-    if [ ! -e ./DBs/$DBName/.DBMetaData ]
-    then 
-        touch ./DBs/$DBName/.DBMetaData
-    fi
-
     if [ ! -e ./DBs/$DBName/$tableName ]
     then 
         touch ./DBs/$DBName/$tableName
