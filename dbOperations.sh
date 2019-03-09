@@ -45,14 +45,21 @@ do
 
         if [ $fields == ")" ]
         then
+   
             . ./createTable.sh ${tableFields[*]}
+   
         fi
 
     elif [[ ${commands[0]} == 'drop' && ${commands[1]} == 'table' && ${commands[2]} =~ $validate && ${#commands[@]} -eq 3 ]]
     then
 
         . ./deleteTable.sh $dbName ${commands[2]}
-        
+    
+    elif [[ ${commands[0]} == 'insert' && ${commands[1]} == 'into' && ${commands[2]} =~ $validate && ${commands[3]} == "set" ]]
+    then
+        echo ${commands[@]:4}
+        . ./insertRecord.sh $dbName ${commands[2]} ${commands[@]:4}
+   
     else
         echo "Error: Not a valid sql syntax"
     
