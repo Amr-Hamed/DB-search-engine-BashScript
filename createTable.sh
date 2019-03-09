@@ -1,4 +1,4 @@
-#!user/bin/bash
+#!/bin/bash
 
 function createTable(){
     clear
@@ -24,4 +24,4 @@ function createTable(){
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi
 }
-createTable $1 $2 $3 $4 
+createTable $@ 

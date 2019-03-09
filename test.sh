@@ -1,8 +1,12 @@
 #!/bin/bash
 clear
-function x(){
-index=1
-index=$(($index+1))
-echo $index
+
+
+
+myfunc() {
+    local myresult='some value'
+    echo $myresult
 }
-x $1 $2
+
+result="$(myfunc)"
+echo $result

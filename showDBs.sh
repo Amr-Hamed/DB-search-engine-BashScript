@@ -1,4 +1,4 @@
-#!user/bin/bash
+#!/bin/bash
 
 function showDBs(){
     echo "Welcome to show DBs menu"

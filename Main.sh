@@ -44,14 +44,9 @@ do
         then
             . ./showDBs.sh
 
-        elif [ ${commands[0]} == 'use' ]
+        elif [[ ${commands[0]} == 'use' ]]
         then
             . ./useDB.sh ${commands[1]}
-            if [ ${success} -eq 1 ]
-            then 
-                . ./dbOperations.sh ${commands[1]}
-            
-            fi
 
         else
             echo "Error: Not a valid AGO sql syntax"

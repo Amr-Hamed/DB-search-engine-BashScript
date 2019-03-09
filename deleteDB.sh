@@ -1,4 +1,4 @@
-#!/user/bin/bash
+#!/bin/bash
 
 function deleteDB(){
     echo "Wlecome to delete DB menu"
