@@ -19,21 +19,22 @@ do
     commands=("${my_array[@]}" $input)
     
   
-    if [ ${commands[0]} == 'create' ] && [ ${commands[1]} == 'table' ] && [ ${commands[2]} =~ $validate ] && [ ${commands[3]} == '(' ] && [ ${#commands[@]} -eq 4 ] 
+    if [[ ${commands[0]} == 'create' && ${commands[1]} == 'table' && ${commands[2]} =~ $validate && ${commands[3]} == '(' && ${#commands[@]} -eq 4 ]]
     then
         
-        tableFields[1] = ${commands[2]}
-        i = 2
+        tableFields[1]=${commands[2]}
+        i=2
         read fields
         while [[ $fields != ")" ]]
         do
             field=("${my_array[@]}" $fields)
-            if [[ ${field[1]} == "int" || ${field[1]} == "text" ]] && [ ${field[0]} =~ $validate ]  && [ ${#field[@]} -eq 2 ]
+            if [[ ${field[1]} == "int" || ${field[1]} == "text" ]] &&  [[ ${field[0]} =~ $validate  && ${#field[@]} -eq 2 ]]
             then
                 tableFields[$i]=${field[0]}
-                let $i = $i + 1
+                i=$((i+1))
                 tableFields[$i]=${field[1]}
-                let $i = $i + 1
+                i=$((i+1))
+                echo $i
             else
                 echo "Error: Not a valid AGO sql syntax"
                 break
@@ -44,16 +45,20 @@ do
 
         if [ $fields == ")" ]
         then
-            . ./createTable.sh "${tableFields[@]}"
+            . ./createTable.sh ${tableFields[*]}
         fi
 
+    elif [[ ${commands[0]} == 'drop' && ${commands[1]} == 'table' && ${commands[2]} =~ $validate && ${#commands[@]} -eq 3 ]]
+    then
+
+        . ./deleteTable.sh $dbName ${commands[2]}
+        
     else
         echo "Error: Not a valid sql syntax"
-        echo "here"
     
     fi
     
     printf "AGO SQL [$dbName] > "
-    read 
+    read input
 
 done

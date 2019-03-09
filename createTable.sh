@@ -23,4 +23,4 @@ function createTable(){
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi
 }
-createTable $@
+createTable $@ 
