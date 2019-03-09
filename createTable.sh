@@ -18,7 +18,8 @@ function createTable(){
         printf "%s:" ${!i} >> ./DBs/$DBName/$tableName
         let i=$i+1
         done
-        echo >> ./DBs/$DBName/$tableName
+        let noOfCols=$(($#-2))
+        printf "$noOfCols\n">> ./DBs/$DBName/$tableName
     else
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi
