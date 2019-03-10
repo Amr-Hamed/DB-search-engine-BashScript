@@ -64,7 +64,7 @@ do
     then
 
         let i=${#commands[@]}-6
-        . ./updateRecord.sh $dbName ${commands[1]} ${commands[@]:3:$i} ${commands[-2]} ${commands[-1]}
+        . ./updateRecordEnhanced.sh $dbName ${commands[1]} ${commands[-2]} ${commands[-1]} ${commands[@]:3:$i}
 
     elif [[ ${commands[0]} == 'delete' && ${commands[1]} == 'from' && ${commands[2]} =~ $validate && ${commands[3]} == 'where' && ${#commands[@]} -eq 6 ]]
     then
