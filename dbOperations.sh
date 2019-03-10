@@ -34,7 +34,7 @@ do
                 i=$((i+1))
                 tableFields[$i]=${field[1]}
                 i=$((i+1))
-                echo $i
+                
             else
                 echo "Error: Not a valid AGO sql syntax"
                 break
@@ -57,9 +57,30 @@ do
     
     elif [[ ${commands[0]} == 'insert' && ${commands[1]} == 'into' && ${commands[2]} =~ $validate && ${commands[3]} == "set" ]]
     then
-        echo ${commands[@]:4}
+        
         . ./insertRecord.sh $dbName ${commands[2]} ${commands[@]:4}
-   
+    
+    elif [[ ${commands[0]} == 'update' && ${commands[1]} =~ $validate && ${commands[2]} == 'set' && ${commands[-3]} == 'where' && ${#commands[@]} -ge 8 ]]
+    then
+
+        let i=${#commands[@]}-6
+        . ./updateRecord.sh $dbName ${commands[1]} ${commands[@]:3:$i} ${commands[-2]} ${commands[-1]}
+
+    elif [[ ${commands[0]} == 'delete' && ${commands[1]} == 'from' && ${commands[2]} =~ $validate && ${commands[3]} == 'where' && ${#commands[@]} -eq 6 ]]
+    then
+        
+        . ./deleteRecord.sh $dbName ${commands[2]} ${commands[@]:4}
+
+    elif [[ ${commands[0]} == 'select' && ${commands[1]} == 'all' && ${commands[2]} == 'from' && ${commands[3]} =~ $validate && ${commands[4]} == 'where' && ${#commands[@]} -eq 7 ]]
+    then
+        
+        . ./displayRecord.sh $dbName ${commands[3]} ${commands[@]:5}
+
+    elif [[ ${commands[0]} == 'select' && ${commands[1]} == 'all' && ${commands[2]} == 'from' && ${commands[3]} =~ $validate && ${#commands[@]} -eq 4 ]]
+    then
+        
+        . ./displayTable.sh $dbName ${commands[3]}
+
     else
         echo "Error: Not a valid sql syntax"
     
