@@ -63,3 +63,10 @@ do
     read input
 
 done
+clear
+echo "                    ===================================== "
+echo "                       Thank you for using AGO SQL DBMS "
+echo "                        Bye, $userName. Have a nice day!"
+echo "                    ===================================== "
+clear
+sleep 3

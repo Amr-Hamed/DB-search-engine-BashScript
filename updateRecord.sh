@@ -73,6 +73,7 @@ function updateRecord(){
                 recordNum=$(awk -v target=$oldRecord '{if(target==$0) print NR}' ./DBs/$DBName/$tableName)
 
                 sed -i "${recordNum}s/.*/$record/" ./DBs/$DBName/$tableName
+                echo "Recored updated successfully!"
 
             else    
                 echo 'Error: Not a valid AGO sql syntax, no. of parameters entered is not matching no. of table fields!'

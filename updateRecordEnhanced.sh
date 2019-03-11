@@ -27,18 +27,18 @@ function updateRecordEnhanced(){
 
         if [ ${tableMetaArray[0]} == $PKName ]
         then
-            if [[ $(cut -d":" -f 2 ./DBs/$DBName/$tableName | grep $PKVal) == $PKVal ]] 
+            if [[ $(awk -F: -v pk=$PKVal '{if(pk==$2&&NR>1) print $0}' ./DBs/$DBName/$tableName) ]] 
             then
                 oldRecord=$(awk -F: -v pk=$PKVal '{if(pk==$2) print $0}' ./DBs/$DBName/$tableName)
                 IFS=':' read -ra oldRecordArray <<< $oldRecord
 
                 for ((i=0;i<${tableMetaArray[-1]};i+=2))
                 do
-                    echo ${tableMetaArray[i]}
+                    
                     j=3
                     for ((;j<=$#;j++)) {
                         flag=$(case "${tableMetaArray[@]}" in  ("${!j} "*|*" ${!j} "*|*" ${!j}") echo "${!j}" ;; esac)
-                        echo $flag
+                        
                         if [[ $flag ]] 
                         then
                             if [[ ${tableMetaArray[i]} == ${!j} ]]; 
@@ -94,7 +94,7 @@ function updateRecordEnhanced(){
                 recordNum=$(awk -v target=$oldRecord '{if(target==$0) print NR}' ./DBs/$DBName/$tableName)
 
                 sed -i "${recordNum}s/.*/$record/" ./DBs/$DBName/$tableName
-                
+                echo "Recored updated successfully!"
             else
                 echo "Sorry, primary key value $PKVal supplied does not exist in table!"
             fi

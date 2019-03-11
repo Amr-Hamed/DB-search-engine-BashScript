@@ -90,3 +90,15 @@ do
     read input
 
 done
+
+clear
+echo "                    ===================================== "
+echo "                       You stopped using $dbName DB "
+echo "                    ===================================== "
+
+sleep 2
+clear
+echo "                      |====================|"
+echo "               =======| Welcome To AGO DBMS|======="
+echo "                      |====================|"
+echo ""

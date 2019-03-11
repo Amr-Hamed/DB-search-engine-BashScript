@@ -16,7 +16,7 @@ function deleteRecord(){
         IFS=':' read -ra tableMetaArray <<< $tableMeta
         if [[ ${tableMetaArray[0]} == $PKName ]]
         then
-            if [[ $(cut -d":" -f 2 ./DBs/$DBName/$tableName | grep $PKVal) == $PKVal ]]
+            if [[ $(awk -F: -v pk=$PKVal '{if(pk==$2&&NR>1) print $0}' ./DBs/$DBName/$tableName) ]]
             then 
             
                 targetRecord=$(awk -F: -v pk=$PKVal '{if(pk==$2) print $0}' ./DBs/$DBName/$tableName)
