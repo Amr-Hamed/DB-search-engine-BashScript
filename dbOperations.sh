@@ -5,7 +5,7 @@ dbName=$1
 tableFields=($dbName)
 
 echo "                      |----------------------------------|"
-echo "               -------|    Start using $dbName Database  |-------"
+echo "                          Start using $dbName Database  "
 echo "                      |----------------------------------|"
 echo "" 
 echo "" 

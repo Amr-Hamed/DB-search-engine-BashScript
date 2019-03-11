@@ -1,9 +1,5 @@
 #!/bin/bash
-
 function createTable(){
-    clear
-    echo "Welcome to create table menu"
-    sleep 2
 
     DBName=$1
     tableName=$2
@@ -20,6 +16,7 @@ function createTable(){
         done
         let noOfCols=$(($#-2))
         printf "$noOfCols\n">> ./DBs/$DBName/$tableName
+        echo "table $tableName created successfully and saved to $DBName DB!"
     else
         echo "Sorry, table name $tableName already exists in $DBName DB, please insert a new name!"
     fi

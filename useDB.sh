@@ -1,16 +1,13 @@
 #!/bin/bash
 
-function useDB(){
-    echo "Welcome to useDB menu"
-    sleep 1
-    
+function useDB(){    
     DBName=$1
 
     if [ -e ./DBs/$DBName ]
     then
         echo "DB changed to $DBName!"
+        sleep 2    
         . ./dbOperations.sh
-    
     else
         echo "Sorry, there's no DB under $DBName name!"
       

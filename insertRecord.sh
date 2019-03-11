@@ -1,8 +1,6 @@
 #!/bin/bash
 
 function insertRecord(){
-    echo "Welcome to the insert record menu"
-
     DBName=$1
     tableName=$2
     noOfArgs=$(($#-2))
@@ -65,7 +63,8 @@ function insertRecord(){
                 echo 'Error: AGO sql > primary key already taken!'
             else 
             printf "%s:" ${fieldsArray[@]} >> ./DBs/$DBName/$tableName
-            printf "\n" >> ./DBs/$DBName/$tableName                
+            printf "\n" >> ./DBs/$DBName/$tableName
+            echo "Record added successfully to table $tableName!"                
             fi
         else    
             echo 'Error: Not a valid AGO sql syntax, no. of parameters entered is not matching no. of table fields!'

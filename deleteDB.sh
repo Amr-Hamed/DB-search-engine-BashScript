@@ -1,8 +1,6 @@
 #!/bin/bash
 
 function deleteDB(){
-    echo "Wlecome to delete DB menu"
-    sleep 2
 
     DBName=$1;
     if [ -e ./DBs/$DBName ]
@@ -19,7 +17,6 @@ function deleteDB(){
                 [Nn])   break
                 ;;
                 *)      echo "Sorry, invalid option, please select Y or y for yes, N or n for no!"
-                        sleep 2
                 ;;
                 esac 
         done

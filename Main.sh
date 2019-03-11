@@ -6,12 +6,13 @@ if [ ! -e DBs ]
 then
 mkdir "./DBs"
 fi
-
-echo "                      |--------------------|"
-echo "               -------| Welcome To AGO DBMS |-------"
-echo "                      |--------------------|"
-echo "" 
-echo "" 
+echo "Hey there, my name is AGO, what's your name?!"
+read userName
+clear
+echo "                      |====================|"
+echo "               =======| Welcome To AGO DBMS|======="
+echo "                      |====================|"
+echo "                                                Welcome, $userName!"  
 echo ""
 printf "AGO SQL > "
 

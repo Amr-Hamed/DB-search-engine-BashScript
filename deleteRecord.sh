@@ -21,6 +21,7 @@ function deleteRecord(){
             
                 targetRecord=$(awk -F: -v pk=$PKVal '{if(pk==$2) print $0}' ./DBs/$DBName/$tableName)
                 sed -i "/^$targetRecord$/d" ./DBs/$DBName/$tableName
+                echo "Record deleted successfully from table $tableName!"
                 
             else
                 echo "Sorry, there's no record with the value of primary key passed!"

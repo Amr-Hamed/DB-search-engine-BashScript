@@ -1,8 +1,6 @@
 #!/bin/bash
 
 function deleteTable(){
-    echo "Welcome to the delete table menu"
-    sleep 2
     DBName=$1
     tableName=$2
 
